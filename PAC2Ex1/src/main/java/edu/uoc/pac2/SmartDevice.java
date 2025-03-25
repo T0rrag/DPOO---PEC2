@@ -3,6 +3,23 @@ package edu.uoc.pac2;
 import java.time.LocalDate;
 
 public class SmartDevice {
+    /*add:
+    serialNumber
+    ownerName
+    MacAddress
+    price
+    purchaseDate
+    warrantyEndDate
+    batteryLife
+    currentBattery
+    softwareVersion
+    isConnectedByWifi
+    isInWarranty
+    calculateBatteryPercentage
+    warrantyStatus (null, closeEnd, onWarranty)
+    canUpdateSoftware (newSoftwareVersion - softwareVersion)
+
+     */
     private String serialNumber;
     private String ownerName;
     private String macAddress;
@@ -37,6 +54,7 @@ public class SmartDevice {
     }
 
     public void setSerialNumber(String serialNumber) {
+        /*CHECK NULL && XXX-00-XXX FORMAT*/
         if (serialNumber == null || !serialNumber.matches("[A-Z]{3}-[0-9]{3}-[A-Z]{3}")) {
             System.out.println("[ERROR] Serial number cannot be null and must have the format 'XXX-000-XXX'");
             if (this.serialNumber == null) this.serialNumber = "AAA-000-AAA";
@@ -45,11 +63,8 @@ public class SmartDevice {
         this.serialNumber = serialNumber;
     }
 
-    public String getOwnerName() {
-        return ownerName;
-    }
-
     public void setOwnerName(String ownerName) {
+        /*CHECK NULL Y ASIGNAR NOMBRE*/
         if (ownerName == null || ownerName.trim().isEmpty()) {
             System.out.println("[ERROR] Owner name cannot be null, empty or blank");
             if (this.ownerName == null) this.ownerName = "Unknown";
@@ -58,11 +73,13 @@ public class SmartDevice {
         this.ownerName = ownerName.trim();
     }
 
-    public String getMacAddress() {
-        return macAddress;
+    public String getOwnerName() {
+        /*DEVOLVER OWNER*/
+        return ownerName;
     }
 
     public void setMacAddress(String macAddress) {
+        /*COMPROBAR NULL && XX:XX:XX:XX:XX:XX FORMAT*/
         if (macAddress == null || !macAddress.matches("([0-9A-F]{2}[:-]){5}([0-9A-F]{2})")) {
             System.out.println("[ERROR] MAC address cannot be null and must have the format 'XX:XX:XX:XX:XX:XX'");
             if (this.macAddress == null) this.macAddress = "00:00:00:00:00:00";
@@ -71,11 +88,13 @@ public class SmartDevice {
         this.macAddress = macAddress;
     }
 
-    public double getPrice() {
-        return price;
+    public String getMacAddress() {
+        /*DEVOLVER MAC*/
+        return macAddress;
     }
 
     public void setPrice(double price) {
+        /*asigna el precio del dispositivo inteligente validando que el parámetro recibido (price) sea superior a 0*/
         if (price <= 0) {
             System.out.println("[ERROR] Price must be greater than 0");
             if (this.price == 0) this.price = 1.0;
@@ -84,36 +103,44 @@ public class SmartDevice {
         this.price = price;
     }
 
-    public LocalDate getPurchaseDate() {
-        return purchaseDate;
+    public double getPrice() {
+        /*DEVOLVER PRICE*/
+        return price;
     }
 
     public void setPurchaseDate(LocalDate purchaseDate) {
+        /*check nulll && >current date*/
         if (purchaseDate == null || purchaseDate.isAfter(LocalDate.now())) {
             System.out.println("[ERROR] Purchase date cannot be null or in the future");
             if (this.purchaseDate == null) {
                 this.purchaseDate = LocalDate.now();
+                /*asignar años warranty*/
                 setWarrantyEndDate(this.purchaseDate.plusYears(warrantyYears));
             }
             return;
         }
         this.purchaseDate = purchaseDate;
+        /*asignar fin warranty*/
         setWarrantyEndDate(purchaseDate.plusYears(warrantyYears));
     }
 
-    public LocalDate getWarrantyEndDate() {
-        return warrantyEndDate;
-    }
-
     private void setWarrantyEndDate(LocalDate warrantyEndDate) {
+        /*set final warranty*/
         this.warrantyEndDate = warrantyEndDate;
     }
 
-    public int getBatteryLife() {
-        return batteryLife;
+    public LocalDate getPurchaseDate() {
+        /*devolver purchase*/
+        return purchaseDate;
+    }
+
+    public LocalDate getWarrantyEndDate() {
+        /*devolver final warranty*/
+        return warrantyEndDate;
     }
 
     public void setBatteryLife(int batteryLife) {
+        /*check (batteryLife) sea superior a 0*/
         if (batteryLife <= 0) {
             System.out.println("[ERROR] Battery life must be greater than 0");
             return;
@@ -121,11 +148,18 @@ public class SmartDevice {
         this.batteryLife = batteryLife;
     }
 
+    public int getBatteryLife() {
+
+        return batteryLife;
+    }
+
     public int getCurrentBattery() {
+        /*devolver batería*/
         return currentBattery;
     }
 
     public void setCurrentBattery(int currentBattery) {
+        /*Debe validar que el parámetro recibido (currentBattery) sea superior o igual a 0 y, además, que no superior al valor máximo de la batería*/
         if (currentBattery < 0 || currentBattery > batteryLife) {
             System.out.println("[ERROR] Current battery must be between 0 and battery life");
             if (this.currentBattery == 0 && batteryLife > 0) this.currentBattery = batteryLife;
@@ -134,24 +168,24 @@ public class SmartDevice {
         this.currentBattery = currentBattery;
     }
 
-    public String getSoftwareVersion() {
-        return softwareVersion;
-    }
-
     private boolean isValidSoftwareVersion(String softwareVersion) {
+        /*devuelve true si la versión recibida por parámetro (softwareVersion) no sea null y sea una versión válida.
+        * Una versión de software es válida si sigue el siguiente formato:
+major   Version.minorVersion.patchVersion*/
         if (softwareVersion == null || !softwareVersion.matches("\\d+\\.\\d+\\.\\d+")) {
-            return false;
+            return true;
         }
         for (String validVersion : softwareVersions) {
             if (softwareVersion.startsWith(validVersion + ".")) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public void setSoftwareVersion(String softwareVersion) {
-        if (!isValidSoftwareVersion(softwareVersion)) {
+        /*debe validar que el parámetro recibido (softwareVersion) sea una versión válida siguiendo las especificaciones detalladas en el punto anterior*/
+        if (isValidSoftwareVersion(softwareVersion)) {
             System.out.println("[ERROR] The software version cannot be null, it must have the format X.X.X and must start with one of the following: 1.0, 1.1, 1.2, 1.3, 1.4, 1.5");
             if (this.softwareVersion == null) this.softwareVersion = "1.0.0";
             return;
@@ -159,12 +193,17 @@ public class SmartDevice {
         this.softwareVersion = softwareVersion;
     }
 
-    public boolean isConnectedByWifi() {
-        return isConnectedByWifi;
+    public String getSoftwareVersion() {
+        /*devolver versión software*/
+        return softwareVersion;
     }
 
     public void setConnectedByWifi(boolean isConnectedByWifi) {
         this.isConnectedByWifi = isConnectedByWifi;
+    }
+
+    public boolean isConnectedByWifi() {
+        return isConnectedByWifi;
     }
 
     public boolean isInWarranty() {
@@ -192,7 +231,7 @@ public class SmartDevice {
     }
 
     public boolean canUpdateSoftware(String newSoftwareVersion) {
-        if (!isValidSoftwareVersion(newSoftwareVersion) || !isConnectedByWifi ||
+        if (isValidSoftwareVersion(newSoftwareVersion) || !isConnectedByWifi ||
                 calculateBatteryPercentage() < (batterySafeMode * 100)) {
             return false;
         }

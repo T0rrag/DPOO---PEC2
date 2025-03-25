@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.uoc.pac2.SmartDeviceTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2025-03-25T15:34:53" hostname="TORRE15" time="0.083">
+<testsuite name="edu.uoc.pac2.SmartDeviceTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2025-03-25T16:00:10" hostname="TORRE15" time="0.068">
   <properties/>
-  <testcase name="Sanity - Fields definition" classname="edu.uoc.pac2.SmartDeviceTest" time="0.016"/>
+  <testcase name="Sanity - Fields definition" classname="edu.uoc.pac2.SmartDeviceTest" time="0.015"/>
   <testcase name="Sanity - Constructor definition" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
   <testcase name="Sanity - Methods definition" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
-  <testcase name="Minimum - setSerialNumber" classname="edu.uoc.pac2.SmartDeviceTest" time="0.009"/>
-  <testcase name="Minimum - setOwnerName" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
-  <testcase name="Minimum - setMacAddress" classname="edu.uoc.pac2.SmartDeviceTest" time="0.005"/>
-  <testcase name="Minimum - setPrice" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
-  <testcase name="Minimum - setPurchaseDate" classname="edu.uoc.pac2.SmartDeviceTest" time="0.004"/>
+  <testcase name="Minimum - setSerialNumber" classname="edu.uoc.pac2.SmartDeviceTest" time="0.008"/>
+  <testcase name="Minimum - setOwnerName" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
+  <testcase name="Minimum - setMacAddress" classname="edu.uoc.pac2.SmartDeviceTest" time="0.003"/>
+  <testcase name="Minimum - setPrice" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
+  <testcase name="Minimum - setPurchaseDate" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
   <testcase name="Minimum - setWarrantyEndDate" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
   <testcase name="Minimum - setBatteryLife" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
   <testcase name="Minimum - setCurrentBattery" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
-  <testcase name="Minimum - setSoftwareVersion" classname="edu.uoc.pac2.SmartDeviceTest" time="0.011"/>
+  <testcase name="Minimum - setSoftwareVersion" classname="edu.uoc.pac2.SmartDeviceTest" time="0.009"/>
   <testcase name="Minimum - isConnectedByWifi" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
   <testcase name="Minimum - isInWarranty" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
   <testcase name="Minimum - calculateRemainingMinutesBattery" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
-  <testcase name="Minimum - calculateBatteryPercentage" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
-  <testcase name="Minimum - warrantyStatus" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
+  <testcase name="Minimum - calculateBatteryPercentage" classname="edu.uoc.pac2.SmartDeviceTest" time="0.0"/>
+  <testcase name="Minimum - warrantyStatus" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
   <testcase name="Minimum - canUpdateSoftware" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
-  <testcase name="Minimum - updateSoftware" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
+  <testcase name="Minimum - updateSoftware" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
