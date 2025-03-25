@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="edu.uoc.pac2.SmartDeviceTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-03-25T19:51:20" hostname="DESKTOP-80UJPKL" time="0.06">
+  <properties/>
+  <testcase name="Exception setSerialNumber" classname="edu.uoc.pac2.SmartDeviceTest" time="0.03"/>
+  <testcase name="Exception setOwnerName" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
+  <testcase name="Exception setMacAddress" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
+  <testcase name="Exception setPrice" classname="edu.uoc.pac2.SmartDeviceTest" time="0.003"/>
+  <testcase name="Exception setPurchaseDate" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
+  <testcase name="Exception setBatteryLife" classname="edu.uoc.pac2.SmartDeviceTest" time="0.003"/>
+  <testcase name="Exception setCurrentBattery" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
+  <testcase name="Exception setSoftwareVersion" classname="edu.uoc.pac2.SmartDeviceTest" time="0.002"/>
+  <testcase name="Exception updateSoftware" classname="edu.uoc.pac2.SmartDeviceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
