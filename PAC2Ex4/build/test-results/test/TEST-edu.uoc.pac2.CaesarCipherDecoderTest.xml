@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="edu.uoc.pac2.CaesarCipherDecoderTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-03-26T14:37:26" hostname="DESKTOP-80UJPKL" time="0.056">
+  <properties/>
+  <testcase name="Minimum - calculateFrequency" classname="edu.uoc.pac2.CaesarCipherDecoderTest" time="0.039"/>
+  <testcase name="Advanced - findMostFrequentLetter" classname="edu.uoc.pac2.CaesarCipherDecoderTest" time="0.002"/>
+  <testcase name="Advanced - calculateShift" classname="edu.uoc.pac2.CaesarCipherDecoderTest" time="0.003"/>
+  <testcase name="Advanced - decryptMessage" classname="edu.uoc.pac2.CaesarCipherDecoderTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
