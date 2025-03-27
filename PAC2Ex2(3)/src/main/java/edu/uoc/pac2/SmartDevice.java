@@ -62,11 +62,7 @@ public class SmartDevice {
         setConnectedByWifi(isConnectedByWifi);
     }
 
-    /**
-     * Assign a serial number with the format: XXX-000-XXX.
-     * @param setSerialNumber The serial number (format: XXX-000-XXX)
-     * @return serial number of the device
-     */
+    /**Assign a serial number with the format: XXX-000-XXX.**/
 
     public void setSerialNumber(String serialNumber) throws Exception {
         if (serialNumber == null || !serialNumber.matches("[A-Z]{3}-[0-9]{3}-[A-Z]{3}")) {
@@ -75,12 +71,12 @@ public class SmartDevice {
         this.serialNumber = serialNumber;
     }
 
-    /** @return The serial number of the device */
+    /** Return The serial number of the device. **/
     public String getSerialNumber() {
         return serialNumber;
     }
 
-    /*CHECK NULL Y ASIGNAR NOMBRE*/
+    /**Assign an owners name and check if its not null.**/
     public void setOwnerName(String ownerName) throws Exception {
         if (ownerName == null || ownerName.trim().isEmpty()) {
             throw new Exception("[ERROR] Owner name cannot be null, empty or blank");
@@ -88,12 +84,12 @@ public class SmartDevice {
         this.ownerName = ownerName.trim();
     }
 
-    /*DEVOLVER OWNER*/
+    /**Return owners name.**/
     public String getOwnerName() {
         return ownerName;
     }
 
-    /*COMPROBAR NULL && XX:XX:XX:XX:XX:XX FORMAT*/
+    /** Check if MAC Address follows the format (XX:XX:XX:XX:XX:XX) and its not null**/
     public void setMacAddress(String macAddress) throws Exception {
         if (macAddress == null || !macAddress.matches("([0-9A-F]{2}[:-]){5}([0-9A-F]{2})")) {
             throw new Exception("[ERROR] MAC address cannot be null and must have the format 'XX:XX:XX:XX:XX:XX'");
@@ -101,12 +97,12 @@ public class SmartDevice {
         this.macAddress = macAddress;
     }
 
-    /*DEVOLVER MAC*/
+    /** Return MAC Address **/
     public String getMacAddress() {
         return macAddress;
     }
 
-    /*asigna el precio del dispositivo inteligente validando que el parámetro recibido (price) sea superior a 0*/
+    /**Assign a price for the device, given that price > 0 **/
     public void setPrice(double price) throws Exception {
         if (price <= 0) {
             throw new Exception("[ERROR] Price must be greater than 0");
@@ -114,37 +110,37 @@ public class SmartDevice {
         this.price = price;
     }
 
-    /*DEVOLVER PRICE*/
+    /**Return price **/
     public double getPrice() {
         return price;
     }
 
-    /*check nulll && >current date*/
+    /**Assign a Purchase date, that must be not null and less or equal our current local date **/
     public void setPurchaseDate(LocalDate purchaseDate) throws Exception {
         if (purchaseDate == null || purchaseDate.isAfter(LocalDate.now())) {
             throw new Exception("[ERROR] Purchase date cannot be null or in the future");
         }
         this.purchaseDate = purchaseDate;
-        /*asignar fin warranty*/
+        /**Calculate an end date based on remaining months since purchaseDate **/
         setWarrantyEndDate(purchaseDate.plusYears(warrantyYears));
     }
 
-    /*set final warranty*/
+    /**Assign and end date based on remaining months since purchaseDate **/
     private void setWarrantyEndDate(LocalDate warrantyEndDate) {
         this.warrantyEndDate = warrantyEndDate;
     }
 
-    /** @return The purchase date of the device */
+    /** Return the purchase date of the device **/
     public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
 
-    /** @return The warranty end date of the device */
+    /** Return warranty end date of a given device **/
     public LocalDate getWarrantyEndDate() {
         return warrantyEndDate;
     }
 
-    /*check (batteryLife) sea superior a 0*/
+    /** Check for battery life, it must be greather than 0. In our case we throw an exception if its less or equal than 0 **/
     public void setBatteryLife(int batteryLife) throws Exception {
         if (batteryLife <= 0) {
             throw new Exception("[ERROR] Battery life must be greater than 0");
@@ -152,17 +148,17 @@ public class SmartDevice {
         this.batteryLife = batteryLife;
     }
 
-    /** @return The maximum battery life in mAh */
+    /** Return The maximum battery life in mAh **/
     public int getBatteryLife() {
         return batteryLife;
     }
 
-    /*devolver batería*/
+    /** Get our current battery level**/
     public int getCurrentBattery() {
         return currentBattery;
     }
 
-    /*Debe validar que el parámetro recibido (currentBattery) sea superior o igual a 0 y, además, que no superior al valor máximo de la batería*/
+  /** Check if (currentBattery is less 0) and also (currentBattery is bigger than batteryLife) if there is an error, return prompt, else return currentBattery **/
     public void setCurrentBattery(int currentBattery) throws Exception {
         if (currentBattery < 0 || currentBattery > batteryLife) {
             throw new Exception("[ERROR] Current battery must be between 0 and battery life");
@@ -170,43 +166,46 @@ public class SmartDevice {
         this.currentBattery = currentBattery;
     }
 
-    /*devuelve true si la versión recibida por parámetro (softwareVersion) no sea null y sea una versión válida.
-     * Una versión de software es válida si sigue el siguiente formato: majorVersion.minorVersion.patchVersion*/
+    /**Return true if a given version is not null and its a valid version. A valid version must follow the following format: majorVersion.minorVersion.patchVersion**/
     private boolean isValidSoftwareVersion(String softwareVersion) {
         if (softwareVersion == null || !softwareVersion.matches("\\d+\\.\\d+\\.\\d+")) {
-            return false;  // Fixed: Return false for invalid versions
+            /**For invalid version**/
+            return false;
         }
         for (String validVersion : softwareVersions) {
             if (softwareVersion.startsWith(validVersion + ".")) {
-                return true;  // Fixed: Return true for valid versions
+                /** For valid version**/
+                return true;
             }
         }
         return false;
     }
 
-    /*debe validar que el parámetro recibido (softwareVersion) sea una versión válida siguiendo las especificaciones detalladas en el punto anterior*/
-    public void setSoftwareVersion(String softwareVersion) throws Exception {
-        if (!isValidSoftwareVersion(softwareVersion)) {  // Fixed: Throw exception for invalid versions
+    /**Check if softwareVersion is valid given the format: majorVersion.minorVersion.patchVersion  **/
+      public void setSoftwareVersion(String softwareVersion) throws Exception {
+        if (!isValidSoftwareVersion(softwareVersion)) {
+            /** If its not valid, show prompt **/
             throw new Exception("[ERROR] The software version cannot be null, it must have the format X.X.X and must start with one of the following: 1.0, 1.1, 1.2, 1.3, 1.4, 1.5");
         }
         this.softwareVersion = softwareVersion;
     }
 
-    /*devolver versión software*/
+    /** Return softwareVersion**/
     public String getSoftwareVersion() {
         return softwareVersion;
     }
 
+    /** Check if its connected by wifi (true or false)**/
     public void setConnectedByWifi(boolean isConnectedByWifi) {
         this.isConnectedByWifi = isConnectedByWifi;
     }
 
-    /** @return True if the device is connected via Wi-Fi */
+    /** Return if its connected or not **/
     public boolean isConnectedByWifi() {
         return isConnectedByWifi;
     }
 
-    /** @return True if the device is still under warranty */
+    /** Return if the device is still under warranty **/
     public boolean isInWarranty() {
         return LocalDate.now().isBefore(warrantyEndDate);
     }
@@ -221,12 +220,12 @@ public class SmartDevice {
         return (currentBattery * 60) / avgMAhPerHour;
     }
 
-    /** @return The current battery percentage */
+    /** Return battery percentage ((currentBattery divided by batteryLife) * 100)  **/
     public double calculateBatteryPercentage() {
         return (double) currentBattery / batteryLife * 100;
     }
 
-    /** @return The warranty status: "Out of warranty", "Close to the end of the warranty", or "Warranty won't end soon" */
+    /** Return one of the following based on duration: "Out of warranty", "Close to the end of the warranty", or "Warranty won't end soon" **/
     public String warrantyStatus() {
         if (!isInWarranty()) {
             return "Out of warranty";
@@ -238,11 +237,7 @@ public class SmartDevice {
         return "Warranty won't end soon";
     }
 
-    /**
-     * Checks if the software can be updated to the new version.
-     * @param newSoftwareVersion The version to update to
-     * @return True if update is possible, false otherwise
-     */
+    /** Check if i can update my software given that: new version is valid, is connected and has a minimum battery **/
     public boolean canUpdateSoftware(String newSoftwareVersion) {
         if (!isValidSoftwareVersion(newSoftwareVersion) || !isConnectedByWifi ||
                 calculateBatteryPercentage() < (batterySafeMode * 100)) {
@@ -266,11 +261,7 @@ public class SmartDevice {
         return newPatch > currentPatch;
     }
 
-    /**
-     * Updates the software version if conditions are met.
-     * @param newSoftwareVersion The new software version to install
-     * @throws Exception If the software cannot be updated
-     */
+    /** If the conditions are met, update the software. Create a newSoftwareVersion to store its values. If you can´t, throw exception. **/
     public void updateSoftware(String newSoftwareVersion) throws Exception {
         if (!canUpdateSoftware(newSoftwareVersion)) {
             throw new Exception("[ERROR] Software cannot be updated");
